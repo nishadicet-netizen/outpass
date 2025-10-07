@@ -1,0 +1,102 @@
+{% include "warden_header.html" %}
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<center>
+	<form method="post">
+		{% if data['updatess'] %}
+		<h1 style="color: white">Update Room Details</h1>
+		<table class="table" style="width: 700px;color: white" align="center">
+			<tr>
+				<th>Hostel</th>
+				<td><input type="text" name="hostel" value="{{data['updatess'][0]['name']}}" class="form-control" readonly></td>
+			</tr>
+			<tr>
+				<th>Room No</th>
+				<td><input type="text" name="room_no" value="{{data['updatess'][0]['room_no']}}" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Capacity</th>
+				<td><input type="text" name="capacity" value="{{data['updatess'][0]['capacity']}}" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submits" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<h1 style="color: white">Manage Hostel Rooms</h1>
+		<table class="table" style="width: 700px;color: white" align="center">
+			<tr>
+				<th>Hostel</th>
+				<td>
+					{% for row in data['hostels'] %}
+					<select name="hostel" readonly class="form-control">
+						<option value="{{row['hostel_id']}}">{{row['name']}}</option>
+					</select>
+					{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<th>Room No</th>
+				<td><input type="text" name="room_no" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Capacity</th>
+				<td><input type="text" name="capacity" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		
+	</form>
+
+{% endif %}
+
+</div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+<center>
+<h1>Room Details</h1>
+	<table class="table" style="width: 700px;" align="center">
+		<tr>
+			<th>Sl No</th>
+			<th>Room No</th>
+			<th>Capacity</th>
+		</tr>
+
+		{% for row in data['rooms'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['room_no']}}</td>
+			<td>{{row['capacity']}}</td>
+			<td><a class="btn btn-info" href="?action=update&rid={{row['room_id']}}">UPDATE</a></td>
+			<td><a class="btn btn-danger" href="?action=delete&rid={{row['room_id']}}">DELETE</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</center>
+
+
+{% include "footer.html" %}

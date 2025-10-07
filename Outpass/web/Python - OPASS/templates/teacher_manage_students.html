@@ -1,0 +1,205 @@
+{% include "teacher_header.html" %}
+
+<section id="hero" style="height:900px;">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<center>
+	<form method="post">
+
+		{% if data['updatess'] %}
+		<h1 style="color:white">Update Students Details</h1>
+		<table class="table" style="width: 700px;color: white;" align="center">
+		<tr>
+				<th>Batch</th>
+				<td>
+					<select name="batch" required>
+						{% for row in data['updatess'] %}
+						<option value="{{data['updatess'][0]['batch_id']}}">{{data['updatess'][0]['start_year']}}-{{row['end_year']}}</option>
+						{% endfor %}
+						{% for row in  data['courses'] %}
+						<option value="{{row['batch_id']}}">{{row['start_year']}}-{{row['end_year']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Course</th>
+				<td>
+					<select name="course" required>
+						{% for row in data['updatess'] %}
+						<option value="{{data['updatess'][0]['course_id']}}">{{data['updatess'][0]['course_name']}}</option>
+						{% endfor %}
+						{% for row in  data['course'] %}
+						<option value="{{row['batch_id']}}">{{row['course_name']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="fname" pattern="[a-zA-Z\s]{0,30}" required value="{{data['updatess'][0]['first_name']}}"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lname" pattern="[a-zA-Z\s]{0,30}" required value="{{data['updatess'][0]['last_name']}}"></td>
+			</tr>
+			<tr>
+				<th>House Name</th>
+				<td><input type="text" name="hname" pattern="[a-zA-Z]{0,30}" required value="{{data['updatess'][0]['house_name']}}"></td>
+			</tr>
+			<tr>
+				<th>Place </th>
+				<td><input type="text" name="place" pattern="[a-zA-Z]{0,30}" required value="{{data['updatess'][0]['place']}}"></td>
+			</tr>
+			<tr>
+				<th>Parent Mail</th>
+				<td><input type="email" name="pmail" required value="{{data['updatess'][0]['parent_email']}}"></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="phone" pattern="[0-9]{10}" required value="{{data['updatess'][0]['phone']}}"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="email" pattern=".+@gmail\.com" required value="{{data['updatess'][0]['email']}}"></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submits" value="UPDATE" class="btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<h1 style="color: white;">Students Registration</h1>
+		<table class="table" style="width: 500px;color: white;" align="center">
+					<tr>
+				<th>Batch</th>
+				<td>
+					<select name="batch" class="form-control">
+						{% for row in  data['batches'] %}
+						<option value="{{row['batch_id']}}">{{row['start_year']}}-{{row['end_year']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Course</th>
+				<td>
+					<select name="course" required class="form-control">
+						
+						{% for row in  data['courses'] %}
+						<option value="{{row['course_id']}}">{{row['course_name']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="fname" pattern="[a-zA-Z\s]{0,30}" required  class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lname" pattern="[a-zA-Z\s]{0,30}" required class="form-control" ></td>
+			</tr>
+			<tr>
+				<th>House Name</th>
+				<td><input type="text" name="hname" pattern="[a-zA-Z]{0,30}" required  class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Place </th>
+				<td><input type="text" name="place" pattern="[a-zA-Z]{0,30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Hostel Facility</th>
+				<td><select name="Hostel" required class="form-control">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					</select></td>
+				</tr>
+			<tr>
+				<th>Parent Mail</th>
+				<td><input type="email" name="pmail" pattern=".+@gmail\.com" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="phone" pattern="[0-9]{10}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="email" pattern=".+@gmail\.com" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Username</th>
+				<td><input type="text" name="uname"  required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" name="pwd" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="REGISTER" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% endif %}
+		  </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <center>
+
+		<h1>Students Details</h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['students'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a class="btn btn-info" href="?action=update&sid={{row['login_id']}}">UPDATE</a></td>
+				<td><a class="btn btn-danger" href="?action=delete&sid={{row['login_id']}}">DELETE</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</form>
+</center>
+<!-- </div>
+</div>
+</div>
+</div>
+</div> -->
+{% include "footer.html" %}

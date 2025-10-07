@@ -1,0 +1,94 @@
+{% include "admin_header.html" %}
+<section id="hero" style="height: 400px">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+              	<center>
+              		<form method="post">
+              	<table class="table" style="width: 500px">
+              	 <tr>
+				<th style="color: white">Department</th>
+				<td><select name="department" required class="form-control">
+					<option>--select--</option>
+					{% for row in data['dept'] %}
+					<option value="{{row['dept_id']}}">{{row['department']}}</option>
+					{% endfor %}
+					
+				</select></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="2" align="center"><input type="submit" class="btn btn-info" value="search" name="serach"></td>
+			</tr>
+				
+			</table>
+			</center>
+			</form>
+              	</div>
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section> 
+
+<center>
+	<form method="post">
+		 
+  <center>
+
+		{% if data['department'] %}
+		<h1 style="color: black">Departments</h1>
+		<table class="table" style="width: 700px;" align="center">
+			<tr style="color: black">
+				<th>Sl No</th>
+				<th>Department</th>
+				<th></th>
+				<th></th>
+			</tr>
+
+			{% for row in data['department'] %}
+			<tr style="color: black">
+				<td>{{loop.index}}</td>
+				<td>{{row['department']}}</td>
+				<td><a class="btn btn-info" href="admin_view_hod?did={{row['dept_id']}}">HOD</a></td>
+				<td><a class="btn btn-danger" href="admin_view_teachers?hid={{row['dept_id']}}">Teacher</a></td>
+				<td><a class="btn btn-info" href="admin_view_department_outpass?did={{row['dept_id']}}">Outpass Report</a></td>
+				<td><a class="btn btn-danger" href="admin_view_department_leave?did={{row['dept_id']}}">Leave Report</a></td>
+				
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<h1>No department Added!!</h1>
+		{% endif %}
+		
+	</form>
+</center>
+
+
+ 
+
+  <br><br><br><br>
+
+{% include "footer.html" %}

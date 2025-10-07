@@ -1,0 +1,133 @@
+{% include "hod_header.html" %}
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js">
+      </script>
+      <script type="text/javascript">
+         $(function() {
+            $( "#date" ).datepicker({dateFormat: 'yy'});
+         });
+      </script>
+<center>
+	<form method="post">
+		{% if data['updatess'] %}
+		<h1>Update Batches Here</h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>Course</th>
+				<td>
+					<select name="course" required class="form-control">
+						{% for row in data['updatess'] %}
+						<option value="{{data['updatess'][0]['course_id']}}">{{data['updatess'][0]['course_name']}}</option>
+						{% endfor %}
+
+						{% for row in data['courses'] %}
+						<option value="{{row['course_id']}}">{{row['course_name']}}</option>
+						{% endfor %}
+						
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Start Year</th>
+				<td><input type="date" name="syear" id="date" required class="form-control" ></td>
+			</tr>
+			<tr>
+				<th>end Year</th>
+				<td><input type="date" name="eyear" id="date" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submits" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<h1 style="color: white">Add Batches Here</h1>
+		<table class="table" style="width: 700px; align="center">
+			<tr>
+				<th style="color: white">Course</th>
+				<td>
+					<select name="course" required class="form-control">
+
+						{% for row in data['courses'] %}
+						<option value="{{row['course_id']}}">{{row['course_name']}}</option>
+						{% endfor %}
+						
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th style="color: white">Start Year</th>
+				<td><input type="date" name="syear" id="date" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="color: white">end Year</th>
+				<td><input type="date" name="eyear" id="date" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% endif %}
+		  </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <center>
+		<h1>Batches</h1>
+
+		{% if data['batches'] %}
+
+		
+
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>Course</th>
+				<td>Start Year</td>
+				<td>End Year</td>
+			</tr>
+
+			{% for row in data['batches'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['start_year']}}</td>
+				<td>{{row['end_year']}}</td>
+				<td><a class="btn btn-info" href="?action=update&bid={{row['batch_id']}}">UPDATE</a></td>
+				<td><a class="btn btn-danger" href="?action=delete&bid={{row['batch_id']}}">DELETE</a></td>
+			</tr>
+			{% endfor %}
+			
+		</table>
+		{% else %}
+		<h1>No Batches Added!!</h1>
+		{% endif %}
+	</form>
+
+</center>
+<br><br><br><br>
+
+
+{% include "footer.html" %}

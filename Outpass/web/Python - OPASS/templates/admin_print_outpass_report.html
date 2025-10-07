@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<script> 
+		function printDiv() { 
+			var divContents = document.getElementById("div_print").innerHTML; 
+			var a = window.open('', '', 'height=500, width=500'); 
+			a.document.write(divContents); 
+			a.document.close(); 
+			a.print(); 
+		} 
+	</script> 
+
+<body onload="printDiv()">
+	<div id="div_print" >
+<center>
+	<h1 style="padding-top: 30px;font-size: 60px">E-Outpass & Leave</h1>
+	<!-- <img style="width: 100px;height: 100px" src="/static/images/img1.jpg"> -->
+<h1 style="padding-top: 30px;font-size: 60px;font-style: italic;font-family: monospace;font-size: 28px;margin-left: 250px;margin-bottom: 20px" align="left">Outpass Report</h1>
+<h3 align="right" style="margin-right: 250px">Date :{{data['today']}}</h3>
+<h3 align="right" style="margin-right: 250px">Time :{{data['current_time']}}</h3>
+<table class="table" style="width: 1000px;color: black;font-style: italic;font-family: monospace;font-size: 22px" border="5">
+				<tr>
+				<th>Sl No</th>
+				<th>Teacher Name</th>
+				<th>Reason</th>
+				<th>Requested Date</th>
+				<th>Requested Time</th>
+				<th>Return time</th>
+			<!-- 	<th>Request Time</th> -->
+				<th>Status</th>
+			</tr>
+
+			{% for row in data['opass'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['fname']}} {{row['lname']}}</td>
+				<td>{{row['reason']}}</td>
+				<td>{{row['request_date']}}</td>
+				<td>{{row['request_time']}}</td>
+				<td>{{row['return_time']}}</td>
+				<!-- <td>{{row['request_time']}}</td> -->
+				
+				{% if row['status'] =='pending' %}
+				<td style="color: yellow">{{row['status']}}</td>
+				
+				{% elif row['status']=='hod approved teacher leave' %}
+				<td style="color: blue">{{row['status']}}</td>
+			
+				{% elif row['status']=='principal approved teacher leave' %}
+				<td style="color: green">{{row['status']}}</td>
+
+				{% elif row['status']=='Rejected' %}
+				<td style="color: red">{{row['status']}}</td>
+				
+				{% endif %}
+				
+			</tr>
+			{% endfor %}
+		</table>
+			
+</center>
+</div>
+</body>
+</html>

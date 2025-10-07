@@ -1,0 +1,153 @@
+{% include "admin_header.html" %}
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container"><center>
+	<form method="post">
+		{% if data['updatess'] %}
+		<h1>Update Teachers Details</h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="fname" pattern="[a-zA-Z\s]{0,30}" required value="{{data['updatess'][0]['first_name']}}" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lname" pattern="[a-zA-Z\s]{0,30}" required value="{{data['updatess'][0]['last_name']}}" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>House Name</th>
+				<td><input type="text" name="hname" pattern="[a-zA-Z]{0,30}" required value="{{data['updatess'][0]['house_name']}}" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Place </th>
+				<td><input type="text" name="place" pattern="[a-zA-Z]{0,30}" required value="{{data['updatess'][0]['place']}}" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="phone" pattern="[0-9]{10}" required value="{{data['updatess'][0]['phone']}}"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="email" required value="{{data['updatess'][0]['email']}}" class="form-control"></td>
+			</tr>
+			<!-- <tr>
+				<th>Username</th>
+				<td><input type="text" name="uname"  required></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" name="pwd" required></td>
+			</tr> -->
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submits" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+	
+		<h1 style="color: white">Teachers Registration</h1>
+		<table class="table" style="width: 700px;"  align="center">
+			<tr>
+				<th style="color: white">First Name</th>
+				<td><input type="text" name="fname" pattern="[a-zA-Z\s_email]{0,30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="color: white">Last Name</th>
+				<td><input type="text" name="lname" pattern="[a-zA-Z\s]{0,30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="color: white">Select Batch</th>
+				<td>
+					<select required name="bid" class="form-control" id="">
+						{% for row in data['batch'] %}
+						<option value="{{ row['batch_id'] }}">{{ row['course_name'] }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th style="color: white">House Name</th>
+				<td><input type="text" name="hname" pattern="[a-zA-Z]{0,30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="color: white">Place </th>
+				<td><input type="text" name="place" pattern="[a-zA-Z]{0,30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="color: white">Phone</th>
+				<td><input type="text" name="phone" pattern="[0-9]{10}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="color: white">Email</th>
+				<td><input type="email" name="email" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="color: white">Username</th>
+				<td><input type="text" name="uname"  required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="color: white">Password</th>
+				<td><input type="password" name="pwd" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="REGISTER" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% endif %}
+		  </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <center>
+		<h1>Teachers Details</h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Phone</th>
+				<th>Email</th>
+				<th></th>
+				<th></th>
+			</tr>
+
+			{% for row in data['teachers'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['first_name']}}</td>
+				<td>{{row['last_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a class="btn btn-info" href="?action=update&tid={{row['login_id']}}">UPDATE</a></td>
+				<td><a class="btn btn-danger" href="?action=delete&tid={{row['login_id']}}">DELETE</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</form>
+</center>
+
+{% include "footer.html" %}

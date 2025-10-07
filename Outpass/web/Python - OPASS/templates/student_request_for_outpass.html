@@ -1,0 +1,64 @@
+{% include "student_header.html" %}
+{% include "student_subfooter.html" %}
+<center>
+	
+	<form method="post">
+		<h1>Request For Outpass</h1>
+		<table class="table" style="width: 700px; background-color: black;opacity: 0.8;" align="center">
+			<tr>
+			<th>Reason</th>
+			<td><input type="text" name="reason" required class="form-control"></td>
+			</tr>
+			<tr>
+			<th>Request Date</th>
+			<td><input type="date" name="date" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Request Time</th>
+				<td><input type="time" name="time" required class="form-control"></td>
+			</tr>
+			
+				<td colspan="2" align="center"><input type="submit" name="submit" class="btn btn-info" value="Request For Outpass From Class"></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submits" class="btn btn-info" value="Request For Outpass From Hostel"></td>
+			</tr>
+		</table>
+
+		<h1>My Requests</h1>
+		<table class="table" style="width: 700px; background-color: black;opacity: 0.8;" align="center">
+			<tr>
+				<th>Sl No</th>
+				
+				<th>Request Date</th>
+				<th>Request Time</th>
+				<th>Type</th>
+				<th>Reason</th>
+				<th>Status</th>
+			</tr>
+
+			{% for row in data['opass'] %}
+			<tr>
+				<td style="color: white">{{loop.index}}</td>
+				
+				<td style="color: white">{{row['request_date']}}</td>
+				<td style="color: white">{{row['request_time']}}</td>
+				<td style="color: white">{{row['type']}}</td>
+				<td style="color: white">{{row['reason']}}</td>
+				
+				<td style="color: white">{{row['status']}}</td>
+				{% if row['status'] =='pending' %}
+				<td><a class="btn btn-danger" href="?action=cancel&pid={{row['pass_id']}}">Cancel Request</a></td>
+				{% endif %}
+				
+			</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+</center>
+
+{% include "footer.html" %}
+		
+	

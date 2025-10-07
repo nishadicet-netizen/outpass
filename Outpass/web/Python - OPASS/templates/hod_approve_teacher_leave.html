@@ -1,0 +1,65 @@
+{% include "hod_header.html" %}
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<center>
+	<form method="post">
+		<h1 style="color: white">Leave Requests </h1>
+			<table class="table" style="width: 800px; align="center">
+			<tr>
+				<th style="color: white">Sl No</th>
+				<th style="color: white">Student Name</th>
+				<th style="color: white">Reason</th>
+				<th style="color: white">Date</th>
+				<th style="color: white">Duration</th>
+				<th style="color: white">Applied On</th>
+				<th style="color: white">Status</th>
+			</tr>
+
+			{% for row in data['leave'] %}
+			<tr>
+				<td style="color: white">{{loop.index}}</td>
+				<td style="color: white">{{row['sname']}}</td>
+				<td style="color: white">{{row['reason']}}</td>
+				<td style="color: white">{{row['date']}}</td>
+				<td style="color: white">{{row['duration']}}</td>
+				<td style="color: white">{{row['date_time']}}</td>
+				<td style="color: white">{{row['status']}}</td>
+				{% if row['status'] =='pending' %}
+				<td><a class="btn btn-success" href="?action=accept&lid={{row['leave_id']}}">Accept</a></td>
+				<td><a class="btn btn-danger" href="?action=reject&lid={{row['leave_id']}}">Reject</a></td>
+				{% endif %}
+				
+			</tr>
+			{% endfor %}
+		</table>
+		 </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+	</form>
+</center>
+
+
+{% include "footer.html" %}

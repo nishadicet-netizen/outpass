@@ -1,0 +1,45 @@
+{% include "warden_header.html" %}
+{% include "warden_subfooter.html" %}
+<center>
+	<form method="post">
+		<h1>Assign Rooms</h1>
+		<table class="table" style="width: 700px;">
+			<tr>
+				<th>Room No</th>
+				<td>
+					<select name="room" required>
+
+						{% for row in data['rooms'] %}
+						<option value="{{row['room_id']}}">{{row['room_no']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="ASSIGN" class="btn btn-success"></td>
+			</tr>
+		</table>
+
+
+	</form>
+
+	<table class="table" style="width: 700px;">
+		<tr>
+			<th>Sl No</th>
+			<th>Room No</th>
+			<th>Student Name</th>
+			<th>Assigned Date</th>
+		</tr>
+
+		{% for row in data['assigned'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['room_no']}}</td>
+			<td>{{row['sname']}}</td>
+			<td>{{row['assigned_date']}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</center>
+
+{% include "footer.html" %}

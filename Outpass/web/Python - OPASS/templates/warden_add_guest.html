@@ -1,0 +1,90 @@
+{% include "warden_header.html" %}
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<center>
+	<form method="post">
+		
+		<h1 style="color: white">Manage Guest</h1>
+		<table class="table" style="width: 700px;color: white" align="center">
+			<tr>
+				<th>Select Room</th>
+				<td>
+                    <select name="room"  class="form-control">
+                        {% for row in data['rooms'] %}
+						<option value="{{row['room_id']}}">{{row['room_no']}}</option>
+                        {% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Guest</th>
+				<td><input type="text" name="guest" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>No of Days</th>
+				<td><input type="text" name="noof" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Date</th>
+				<td><input type="date" name="date" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="btn" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		
+	</form>
+
+
+
+</div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+<center>
+<h1>Room Details</h1>
+	<table class="table" style="width: 700px;" align="center">
+		<tr>
+			<th>Sl No</th>
+			<th>Guest</th>
+			<th>No of Days</th>
+			<th>Room No</th>
+			<th>Date</th>
+		</tr>
+
+		{% for row in data['guest'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['guest']}}</td>
+			<td>{{row['noofdays']}}</td>
+			<td>{{row['room_no']}}</td>
+			<td>{{row['date']}}</td>
+            <td><a class="btn btn-danger" href="?action=delete&gid={{ row['guest_id'] }}">Delete</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</center>
+
+
+{% include "footer.html" %}

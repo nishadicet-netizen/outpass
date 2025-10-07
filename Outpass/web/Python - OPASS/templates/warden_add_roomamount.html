@@ -1,0 +1,86 @@
+{% include "warden_header.html" %}
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<center>
+	<form method="post">
+		
+		<h1 style="color: white">Add Room Amount</h1>
+		<table class="table" style="width: 700px;color: white" align="center">
+			<tr>
+				<th>Amount</th>
+				<td>
+                    <input type="number" name="amount" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<th>Date</th>
+				<td><input type="date" name="date" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Months duration</th>
+				<td><input type="text" name="dur" class="form-control"></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="btn" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		
+	</form>
+
+
+
+</div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <center>
+	<h1>Mess Amount Details</h1>
+		<table class="table" style="width: 700px;" align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>Student</th>
+				<th>Amount</th>
+				<th>Date</th>
+				<th>Duration</th>
+				<th>Status</th>
+			</tr>
+	
+			{% for row in data['student'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['amount']}}</td>
+				<td>{{row['date']}}</td>
+				<td>{{row['formonth']}}</td>
+				<td>{{row['status']}}</td>
+                <td><a href="warden_view_payment?rid={{ row['request_id'] }}">View Payment</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</center>
+
+
+{% include "footer.html" %}

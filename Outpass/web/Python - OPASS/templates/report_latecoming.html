@@ -1,0 +1,221 @@
+{% include "guard_header.html" %}
+{% include "security_subfooter.html" %}
+<center>
+	<form method="post">
+		<h1>search student</h1>
+		<table class="table" style="width: 300px; " align="center">
+			<tr>
+				<td align="center"><a class="btn btn-info" href="?action=batch">Batch wise </a></td>
+			</tr>
+			<tr>
+				<td align="center"><a class="btn btn-info" href="?action=course">course wise </a></td>
+			</tr>
+			<tr>
+				<td align="center"><a class="btn btn-info" href="?action=name">search with name </a></td>
+			</tr>
+		</table>
+		{% if data['action']=='batch' %}
+		<h1>View Students Batch wise</h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>Select start year</th>
+				<td>
+					<select name="syear" class="form-control" required>
+
+						{% for row in data['batches'] %}
+						<option>{{row['start_year']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Select end year</th>
+				<td>
+					<select name="eyear" class="form-control" required>
+
+						{% for row in data['batches'] %}
+						<option>{{row['end_year']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="SEARCH" class="btn btn-success"></td>
+				
+			</tr>
+			
+		</table>
+		{% if data['stud'] %}
+		
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<h1>Students Details</h1>
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>Course</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['stud'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a class="btn btn-info" href="security_report_latecoming?sid={{row['student_id']}}">Report Late Coming</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	
+		{% endif %}
+
+		{% elif data['action']=='course' %}
+			<h1>View Students course wise</h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>Select course</th>
+				<td>
+					<select name="cname" class="form-control" required>
+
+						{% for row in data['courses'] %}
+						<option>{{row['course_name']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="SEARCH" class="btn btn-success"></td>
+				
+			</tr>
+		</table>
+		{% if data['stud1'] %}
+		
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<h1>Students Details</h1>
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>Course</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['stud1'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a class="btn btn-info" href="security_report_latecoming?sid={{row['student_id']}}">Report Late Coming</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		
+		{% endif %}
+
+		{% elif data['action']=='name' %}
+			<h1>search with name</h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>enter the name here</th>
+				<td><input type="text" name="sname" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="SEARCH" class="btn btn-success"></td>
+				
+			</tr>
+			</table>
+			{% if data['name'] %}
+			
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<h1>Students Details</h1>
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>Course</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['name'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a class="btn btn-info" href="security_report_latecoming?sid={{row['student_id']}}">Report Late Coming</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		
+		{% endif %}
+
+			{% else %}
+
+		
+		
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<h1>Students Details</h1>
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>course</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['students'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a class="btn btn-info" href="security_report_latecoming?sid={{row['student_id']}}">Report Late Coming</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% endif %}
+	</form>
+</center>
+
+{% include "footer.html" %}
+
+
+

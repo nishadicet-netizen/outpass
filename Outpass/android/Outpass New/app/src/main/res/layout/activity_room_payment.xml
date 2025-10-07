@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:background="#e3e3e3"
+    tools:context=".RoomPayment">
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:layout_marginTop="150dp"
+        android:textColor="#F46335"
+        android:textStyle="bold|italic"
+        android:text="Payment" />
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:padding="15dp"
+        android:hint="amount"
+
+        android:enabled="false"
+        android:textColor="#3e3e3e"
+        android:textColorHint="#878686"
+
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id="@+id/acno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:padding="15dp"
+        android:hint="Account no"
+        android:textColor="#3e3e3e"
+        android:textColorHint="#878686"
+
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/cvv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:ems="10"
+        android:hint="CVV*"
+        android:inputType="numberPassword"
+        android:padding="15dp"
+        android:textColor="#3e3e3e"
+        android:textColorHint="#878686"
+
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/expdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:padding="15dp"
+        android:focusableInTouchMode="false"
+        android:hint="Expiry Date "
+        android:textColor="#3e3e3e"
+        android:textColorHint="#878686"
+
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#F46335"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        />
+</LinearLayout>

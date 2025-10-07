@@ -1,0 +1,145 @@
+{% include "admin_header.html" %}
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<center>
+	<form method="post">
+		{% if data['updatess'] %}
+		<h1 style="color: white">Update Courses Here</h1>
+		<table class="table" style="width: 700px; color: white" align="center">
+			<tr>
+				<th>Course Name</th>
+				<td><input type="text" name="course" pattern="[a-zA-Z\s]{0,30}" class="form-control" required value="{{data['updatess'][0]['course_name']}}"></td>
+			</tr>
+			<tr>
+				<th>Duration(years)</th>
+				<td><select name="duration" required class="form-control">
+					{% for row in data['updatess'] %}
+					<option> {{data['updatess'][0]['duration']}}</option>
+					{% endfor %}
+					<option>0.5</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					
+				</select></td>
+				
+			</tr>
+			<tr>
+				<th>Department</th>
+				<td><select name="department" required class="form-control">
+					<option>--select--</option>
+					{% for row in data['dept'] %}
+					<option value="{{row['dept_id']}}">{{row['department']}}</option>
+					{% endfor %}
+					
+				</select></td>
+				
+			</tr>
+
+
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submits" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<h1 style="color: white">Add Courses Here</h1>
+		<table class="table" style="width: 700px;color: white " align="center">
+			<tr>
+				<th>Course Name</th>
+				<td><input type="text" name="course" pattern="[a-zA-Z\s]{0,30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Duration(years)</th>
+				<td><select name="duration" required class="form-control">
+					<option>0.5</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					
+				</select></td>
+				
+			</tr>
+			<tr>
+				<th>Department</th>
+				<td><select name="department" required class="form-control">
+					<option>--select--</option>
+					{% for row in data['dept'] %}
+					<option value="{{row['dept_id']}}">{{row['department']}}</option>
+					{% endfor %}
+					
+				</select></td>
+				
+			</tr>
+
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% endif %}
+
+
+		   </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <center>
+
+		{% if data['courses'] %}
+		<h1 style="color: black">Available Courses</h1>
+		<table class="table" style="width: 700px;" align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>Course</th>
+				<th>Duration</th>
+				<th>Department</th>
+				<th></th>
+				<th></th>
+			</tr>
+
+			{% for row in data['courses'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['duration']}}</td>
+				<td>{{row['department']}}</td>
+				<td><a class="btn btn-info" href="?action=update&cid={{row['course_id']}}">UPDATE</a></td>
+				<td><a class="btn btn-danger" href="?action=delete&cid={{row['course_id']}}">DELETE</a></td>
+				
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<h1>No course Added!!</h1>
+		{% endif %}
+		
+	</form>
+</center>
+<br><br><br><br>
+
+{% include "footer.html" %}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+
+    tools:context=".Homepage">
+
+
+    <Button
+        android:id="@+id/btstudents"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+
+
+        android:text="Students" />
+
+    <Button
+        android:id="@+id/btrequest"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Request Leave" />
+    <Button
+        android:id="@+id/btstudentrequest"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Leave Request From Student" />
+    <Button
+        android:id="@+id/btrequestoutpass"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Request Outpass" />
+
+
+    <Button
+        android:id="@+id/btviewoutpass"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Pass Request From Student" />
+
+
+
+
+
+    <Button
+        android:id="@+id/btlogout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Logout" />
+
+
+
+</LinearLayout>

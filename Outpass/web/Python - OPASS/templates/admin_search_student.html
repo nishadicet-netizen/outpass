@@ -1,0 +1,249 @@
+{% include "admin_header.html" %}
+<section id="hero" style="height: 500px">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<center>
+	<form method="post">
+		<h1 style="color: white">search student</h1>
+		<table class="table" style="width: 300px;">
+			<tr>
+				<td align="center"><a class="btn btn-info" href="?action=batch">Batch wise </a></td>
+			</tr>
+			<tr>
+				<td align="center"><a class="btn btn-info" href="?action=course">course wise </a></td>
+			</tr>
+			<tr>
+				<td align="center"><a class="btn btn-info" href="?action=name">search with name </a></td>
+			</tr>
+		</table>
+
+					</div>
+    </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+		{% if data['action']=='batch' %}
+		<center>
+		<h1>View Students Batch wise</h1>
+		<table class="table" style="width: 700px;" align="center">
+			<tr>
+				<th>Select start year</th>
+				<td>
+					<select class="form-control" name="syear" required>
+
+						{% for row in data['batches'] %}
+						<option>{{row['start_year']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Select end year</th>
+				<td>
+					<select class="form-control" name="eyear" required>
+
+						{% for row in data['batches'] %}
+						<option>{{row['end_year']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" class="btn btn-success" name="submit" value="SEARCH"></td>
+				
+			</tr>
+			
+		</table>
+
+		{% if data['stud'] %}
+		<center>		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<h1>Students Details</h1>
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>Course</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['stud'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	
+		{% endif %}
+
+		{% elif data['action']=='course' %}
+		<center>
+			<h1>View Students course wise</h1>
+		<table class="table" style="width: 700px;" align="center">
+			<tr>
+				<th>Select course</th>
+				<td>
+					<select name="cname" class="form-control" required>
+
+						{% for row in data['courses'] %}
+						<option>{{row['course_name']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" class="btn btn-info" name="submit" value="SEARCH"></td>
+				
+			</tr>
+		</table>
+		</center>
+
+		{% if data['stud1'] %}
+		<center>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<h1>Students Details</h1>
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>Course</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['stud1'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		</center>
+		{% endif %}
+
+		{% elif data['action']=='name' %}
+		<center>
+			<h1>search with name</h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>enter the name here</th>
+				<td><input type="text" class="form-control" name="sname" required></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" class="btn btn-primary" name="submit" value="SEARCH"></td>
+				
+			</tr>
+		</table>
+			{% if data['name'] %}
+			
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<h1>Students Details</h1>
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>Course</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['name'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		
+		{% endif %}
+</center>
+			{% else %}
+
+
+		
+		<center>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<h1>Students Details</h1>
+			<tr>
+				<th>Sl No</th>
+				<th>Batch</th>
+				<th>Name</th>
+				<th>course</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Parent Email</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in data['students'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['start_year']}}-{{row['end_year']}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['course_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['parent_email']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		</center>
+		{% endif %}
+	</form>
+</center>
+
+{% include "footer.html" %}

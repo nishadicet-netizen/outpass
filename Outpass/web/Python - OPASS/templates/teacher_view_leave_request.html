@@ -1,0 +1,42 @@
+{% include "teacher_header.html" %}
+{% include "teacher_subfooter.html" %}
+<center>
+	<form method="post">
+		<h1>Leave Requests </h1>
+		<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>Student Name</th>
+				<th>Reason</th>
+				<th>Date</th>
+				<th>Duration</th>
+				<th>Applied On</th>
+				<th>Status</th>
+			</tr>
+
+			{% for row in data['leave'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['sname']}}</td>
+				<td>{{row['reason']}}</td>
+				<td>{{row['date']}}</td>
+				<td>{{row['duration']}}</td>
+				<td>{{row['date_time']}}</td>
+				<td>{{row['status']}}</td>
+				{% if row['status'] =='pending' %}
+				<td><a class="btn btn-success" href="?action=accept&lid={{row['leave_id']}}">Accept</a></td>
+				<td><a class="btn btn-danger" href="?action=reject&lid={{row['leave_id']}}">Reject</a></td>
+				{% elif row['status']=='accepted' %}
+				<td><a class="btn btn-danger" href="?action=reject&lid={{row['leave_id']}}">Reject</a></td>
+				{% elif row['status']=='rejected' %}
+				<td><a class="btn btn-success" href="?action=accept&lid={{row['leave_id']}}">Accept</a></td>
+				{% endif %}
+				
+			</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+</center>
+
+{% include "footer.html" %}

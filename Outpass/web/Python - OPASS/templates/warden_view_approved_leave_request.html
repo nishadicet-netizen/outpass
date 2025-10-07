@@ -1,0 +1,68 @@
+{% include "warden_header.html" %}
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+<center>
+	<form method="post">
+		<h1 style="color: white">Leave Requests </h1>
+			<table class="table" style="width: 700px; background-color: white;opacity: 0.8;" align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>Student Name</th>
+				<th>Reason</th>
+				<th>Date</th>
+				<th>Duration</th>
+				<th>Applied On</th>
+				<th>Status</th>
+			</tr>
+
+			{% for row in data['leave'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['reason']}}</td>
+				<td>{{row['date']}}</td>
+				<td>{{row['duration']}}</td>
+				<td>{{row['date_time']}}</td>
+				<td>{{row['l_status']}}</td> 
+				<!-- {% if row['l_status'] =='pending' %}
+				<td><a class="btn btn-success" href="?action=accept&lid={{row['leave_id']}}">Accept</a></td>
+				<td><a class="btn btn-danger" href="?action=reject&lid={{row['leave_id']}}">Reject</a></td>
+				{% elif row['l_status']=='accepted' %}
+				<td><a class="btn btn-danger" href="?action=reject&lid={{row['leave_id']}}">Reject</a></td>
+				{% elif row['l_status']=='rejected' %}
+				<td><a class="btn btn-success" href="?action=accept&lid={{row['leave_id']}}">Accept</a></td>
+				{% endif %} -->
+				
+			</tr>
+			{% endfor %}
+		</table>
+		
+		
+	</form>
+</center>
+ </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- End Her
+{% include "footer.html" %}

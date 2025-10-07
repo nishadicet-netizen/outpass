@@ -1,0 +1,173 @@
+{% include "principal_header.html" %}
+<section id="hero" style="height: 500px">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+
+<center>
+	<form method="post">
+		<table class="table" style="width: 500px; " align="center">
+			<tr>
+				<td align="center"><a class="btn btn-info"  href="?action=teacher&did={{data['did']}}">Staff Report</a></td>
+			</tr>
+			<tr>
+				<td align="center"><a class="btn btn-info" href="?action=student&did={{data['did']}}">Student Report</a></td>
+			</tr>
+		</table>
+
+
+		 </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section> 
+
+		{% if data['action']=='student' %}
+		<center>
+		<table class="table" style="width: 500px;">
+			<tr>
+				<th >From date</th>
+				<td><input type="date" name="fdate" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>To date</th>
+				<td><input type="date" name="tdate" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="Submit" class="btn btn-success"></td>
+			</tr>
+
+		</table>
+
+		<h1>Student Outpass Requests </h1>
+			<table class="table" style="width: 800px; align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>Teacher  Name</th>
+				<th>Reason</th>
+				<th>Date</th>
+				<th>Duration</th>
+				<th>Applied On</th>
+				<th>Status</th>
+			</tr>
+
+			{% for row in data['leave2'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['sname']}}</td>
+				<td>{{row['reason']}}</td>
+				<td>{{row['date']}}</td>
+				<td>{{row['duration']}}</td>
+				<td>{{row['date_time']}}</td>
+				
+				{% if row['status'] =='pending' %}
+				<td style="color: yellow">{{row['status']}}</td>
+				
+				{% elif row['status']=='accepted' %}
+				<td style="color: green">{{row['status']}}</td>
+			
+				{% elif row['status']=='rejected' %}
+				<td style="color: red">{{row['status']}}</td>
+				
+				{% endif %}
+				
+			</tr>
+			{% endfor %}
+		</table>
+
+		{% elif data['action']=='teacher' %}
+		<center>
+
+
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>From date</th>
+				<td><input type="date" name="fdate" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>To date</th>
+				<td><input type="date" name="tdate" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="Submit" class="btn btn-success"></td>
+			</tr>
+
+		</table>
+<center>
+	<a href="admin_print_outpass_report" class="btn btn-success">Print</a>
+		<h1>Staff Outpass Requests </h1>
+			<table class="table" style="width: 900px;" align="center">
+			<tr>
+				<th>Sl No</th>
+				<th>Staff Name</th>
+				<th>Reason</th>
+				<th>Requested date</th>				
+				<th>requested time</th>
+				<th>Status</th>
+			</tr>
+
+			{% for row in data['leave1'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['sname']}}</td>
+				<td>{{row['reason']}}</td>
+				<td>{{row['request_date']}}</td>
+				<td>{{row['request_time']}}</td>
+				<td>{{row['status']}}</td>
+				
+				{% if row['status'] =='pending' %}
+				<td style="color: yellow">{{row['status']}}</td>
+				
+				{% elif row['status']=='accepted' %}
+				<td style="color: green">{{row['status']}}</td>
+			
+				{% elif row['status']=='rejected' %}
+				<td style="color: red">{{row['status']}}</td>
+				
+				{% endif %}
+				
+			</tr>
+			{% endfor %}
+		</table>
+		{% endif %}
+		
+	</form>
+		  </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+</center>
+
+{% include "footer.html" %}

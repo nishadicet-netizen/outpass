@@ -1,0 +1,83 @@
+{% include "public_header.html" %}
+ <section id="hero" >
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+ <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown"></h2>
+         <!--  <div class="carousel-item active" >
+            <div class="carousel-container">
+              <div class="container"> -->
+                  <center>
+  <form method="post" >
+    
+    <table style="width: 500px;" >
+      <h1 style="color: white;"><b>Login Here</b></h1>
+      <tr><th><td><br></td></th></tr>
+      <tr>
+        <br>
+        <th>Username</th>
+        <td><span></span></td>
+        <td><input type="text"  class="form-control" name="uname"></td>
+      </tr>
+      <tr><th><td><br></td></th></tr>
+      <tr>
+        <th>Password</th>
+        <td><span></span></td>
+        <td><input type="password"  class="form-control" name="pwd"></td>
+      </tr>
+      <tr><th><td><br></td></th></tr>
+     <tr>
+          <td><input type="submit" name="submit" value="LOGIN" class="btn btn-danger">&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="submit" name="forgotpassword" value="Forgot Password" class="btn btn-warning"></td>
+        </tr>
+    </table>
+  </form>
+
+</center>
+     
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+    
+        
+        <style type="text/css">
+          th{
+            color: white;
+          }
+        </style>
+      
+                 
+
+
+{% include "footer.html" %}
+
+<!-- <style type="text/css">
+  #heroCarousel{
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+   background: url('/static/assets/img/hero-carousel/1.jpg') !important;
+  }
+</style> -->

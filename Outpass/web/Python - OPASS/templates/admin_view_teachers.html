@@ -1,0 +1,73 @@
+{% include "admin_header.html" %}
+<section id="hero" style="height: 700px">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/img1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+              	<center>
+              		<form method="post">
+		 
+  <center>
+
+		{% if data['teacher'] %}
+		<h1 style="color: white">Teachers details</h1>
+		<table class="table" style="width: 700px;" align="center">
+			<tr style="color: white">
+				<th>First name</th>
+				<th>Last name</th>
+				<th>House name</th>
+				<th>Place</th>
+				<th>Phone</th>
+				<th>email</th>
+				<th></th>
+				<th></th>
+			</tr>
+
+			{% for row in data['teacher'] %}
+			<tr style="color: white">
+				
+				<td>{{row['first_name']}}</td>
+				<td>{{row['last_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				</td>
+				
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<h1>No teacher Added!!</h1>
+		{% endif %}
+		
+	</form>
+              	</div>
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section> 
+
+
+
+{% include "footer.html" %}
